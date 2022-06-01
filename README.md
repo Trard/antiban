@@ -16,7 +16,9 @@ git clone https://github.com/Trard/antiban
 npm install
 ```
 
-## Fill the [config](./config.js)
+## Create and fill the ./config.js
+
+[Example of config](./config.example.js)
 
 - access_token - [user access token](https://vk.com/dev/implicit_flow_user)
 - your_id - your vk page id
