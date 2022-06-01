@@ -11,5 +11,6 @@ export default {
     authorization: process.env.authorization,
     cookies: JSON.parse(process.env.cookies),
 
-    timeout: 5000 
+    timeout: 5000,
+    ninja: false
 }

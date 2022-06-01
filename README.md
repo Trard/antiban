@@ -31,6 +31,7 @@ npm install
 - cookies - vk cookies in JSON format
     - Example: "[{"domain":".vk.com","expirationDate":1685356250,"hostOnly":false,"httpOnly":false,"name":"remixcolor_scheme_mode","path":"/","sameSite":"no_restriction","secure":true,"session":false,"storeId":"0","value":"auto","id":1}, {"domain":".vk.com","expirationDate":1685356250,"hostOnly":false......}]")
 - timeout - timeout between checks that user in conversation
+- ninja - auto join and leave
 
 # Run
 ```js

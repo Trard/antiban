@@ -1,25 +1,12 @@
 import fetch from "node-fetch";
 
-export default async function guaranteed_add_to_chat (
+export default async function appointAdmin ({
     user_id,
-    chat_id,
-    your_id,
     group_chat_id,
     group_id,
     hash,
     string_cookies
-) {
-    await this.api.groups
-        .unban({
-            group_id: group_id,
-            owner_id: user_id,
-        })
-        .catch((e) => {
-            if (e.code != 15) {
-                throw e;
-            }
-        });
-
+}) {
     await fetch("https://vk.com/al_im.php?act=a_toggle_admin", {
         headers: {
             accept: "*/*",
@@ -39,19 +26,7 @@ export default async function guaranteed_add_to_chat (
         },
         body: `act=a_toggle_admin&al=1&chat=${
             2000000000 + group_chat_id
-        }&gid=${group_id}&hash=${hash}&im_v=3&is_admin=1&mid=${your_id}`,
+        }&gid=${group_id}&hash=${hash}&im_v=3&is_admin=1&mid=${user_id}`,
         method: "POST",
     });
-
-    await this.api.messages
-        .addChatUser({
-            chat_id: chat_id,
-            user_id: user_id,
-            visible_messages_count: 1000,
-        })
-        .catch((e) => {
-            if (e.code != 15) {
-                throw e;
-            }
-        });
 }

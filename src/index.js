@@ -3,7 +3,7 @@ import stringifyCookies from "../util/stringifyCookies.js";
 import getHash from "../util/getHash.js";
 import isUserInChat from "../util/vk-io/isUserInChat.js";
 import config from "../config.js";
-import guaranteed_add_to_chat from "../util/vk-io/guaranteedAddToChat.js";
+import appointAdmin from "../util/vk-io/appointAdmin.js"
 import attachCustomMethods from "../util/vk-io/attachCustomMethods.js"
 
 let {
@@ -24,7 +24,7 @@ const vk = new VK({
 
 attachCustomMethods(vk, {
     isUserInChat,
-    guaranteed_add_to_chat
+    appointAdmin
 })
 
 var string_cookies = stringifyCookies(cookies);
@@ -39,15 +39,36 @@ function main() {
     let interval = setInterval(async () => {
         try {
             if (!(await vk.custom.isUserInChat(chat_id, user_id))) {
-                await vk.custom.guaranteed_add_to_chat(
-                    user_id,
-                    chat_id,
-                    your_id,
+                await vk.api.groups
+                    .unban({
+                        group_id,
+                        owner_id: user_id,
+                    })
+                    .catch((e) => {
+                        if (e.code != 15) {
+                            throw e;
+                        }
+                    });
+                
+                await vk.custom.appointAdmin({
+                    "user_id": your_id,
                     group_chat_id,
                     group_id,
                     hash,
                     string_cookies
-                );
+                });
+
+                await vk.api.messages
+                    .addChatUser({
+                        chat_id,
+                        user_id,
+                        visible_messages_count: 1000,
+                    })
+                    .catch((e) => {
+                        if (e.code != 15) {
+                            throw e;
+                        }
+                    });
                 console.log("added");
             }
         } catch (e) {
