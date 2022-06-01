@@ -72,8 +72,7 @@ function main() {
                 console.log("added");
             }
         } catch (e) {
-            console.log(e)
-            console.log("catched");
+            console.log("catched", e);
             clearInterval(interval);
 
             (async () => {
