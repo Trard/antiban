@@ -22,7 +22,7 @@ npm install
 
 - access_token - [user access token](https://vk.com/dev/implicit_flow_user)
 - your_id - your vk page id
-- user_id - id of user that you want antiban
+- user_ids - array of user ids that you want protect from ban
 - group_id - id of group that owns the conversation
 - chat_id - your chat id
 - group_chat_id - chat id on the group side

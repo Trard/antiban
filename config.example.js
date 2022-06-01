@@ -2,7 +2,7 @@ export default {
     access_token: process.env.token,
 
     your_id: 495643428,
-    user_id: 679134404,
+    user_id: [616767539, 679134404],
     group_id: 195075564,
 
     chat_id: 322,
